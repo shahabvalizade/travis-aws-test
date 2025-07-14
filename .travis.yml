@@ -22,3 +22,18 @@ after_success:
   - docker push shahabvalizade/multi-nginx
   - docker push shahabvalizade/multi-server
   - docker push shahabvalizade/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "multi-docker"
+  env: "Multi-docker-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-299867956170"
+  bucket_path: "multi-docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
+
